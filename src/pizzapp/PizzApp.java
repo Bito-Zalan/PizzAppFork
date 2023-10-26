@@ -1,10 +1,26 @@
 package pizzapp;
 
+import javax.swing.JOptionPane;
+
 public class PizzApp extends javax.swing.JFrame {
 
     public PizzApp() {
         initComponents();
         
+        int pizzaAlapAr2 = 1750; //songoku ára
+        
+        int meret = 1; //32cm
+        
+        int extra1 = 0;
+        int extra2 = 0;
+        int extra3 = 0;
+        int extrak = extra1 + extra2 + extra3;
+      
+        int db = 1;
+        
+        int vegsoAr = pizzaAlapAr2 * meret + extrak;;
+        vegsoAr *= db;
+        lblAr.setText(vegsoAr + "");
         
     }
 
@@ -42,7 +58,12 @@ public class PizzApp extends javax.swing.JFrame {
         lblValaszthato.setText("Választható pizza:");
 
         cmdValaszthatoPizzak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Margherita", "Hawaii", "Songoku", "Diavola" }));
-        cmdValaszthatoPizzak.setSelectedIndex(2);
+        cmdValaszthatoPizzak.setSelectedIndex(3);
+        cmdValaszthatoPizzak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdValaszthatoPizzakActionPerformed(evt);
+            }
+        });
 
         pnlMeret.setBorder(javax.swing.BorderFactory.createTitledBorder("Méret"));
 
@@ -215,6 +236,41 @@ public class PizzApp extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdValaszthatoPizzakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdValaszthatoPizzakActionPerformed
+        //választott pizza indexe
+        int pizzaIndex = cmdValaszthatoPizzak.getSelectedIndex();
+        
+        //választott pizza alapára
+        int pizzaAlapAr = -1;
+        if(pizzaIndex == 0){
+            pizzaAlapAr = 1590;
+        }else if(pizzaIndex == 1){
+            pizzaAlapAr = 1680;
+        }else if(pizzaIndex == 2){
+            pizzaAlapAr = 1750;
+        }else if(pizzaIndex == 3){
+            pizzaAlapAr = 2100;
+        }
+        
+        
+        
+        
+        
+        
+        int meret = 1; //32cm
+        
+        int extra1 = 0;
+        int extra2 = 0;
+        int extra3 = 0;
+        int extrak = extra1 + extra2 + extra3;
+      
+        int db = 1;
+        
+        int vegsoAr = pizzaAlapAr * meret + extrak;;
+        vegsoAr *= db;
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_cmdValaszthatoPizzakActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
