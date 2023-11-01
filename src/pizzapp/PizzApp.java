@@ -118,6 +118,11 @@ public class PizzApp extends javax.swing.JFrame {
         lblAr.setText("0");
 
         numDb.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        numDb.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                numDbStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFizetendoLayout = new javax.swing.GroupLayout(pnlFizetendo);
         pnlFizetendo.setLayout(pnlFizetendoLayout);
@@ -152,10 +157,25 @@ public class PizzApp extends javax.swing.JFrame {
         pnlExtrak.setBorder(javax.swing.BorderFactory.createTitledBorder("Extrák"));
 
         chbSajt.setText("sajt");
+        chbSajt.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chbSajtItemStateChanged(evt);
+            }
+        });
 
         chbHagyma.setText("hagyma");
+        chbHagyma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbHagymaActionPerformed(evt);
+            }
+        });
 
         chbAnanasz.setText("ananász");
+        chbAnanasz.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chbAnanaszItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlExtrakLayout = new javax.swing.GroupLayout(pnlExtrak);
         pnlExtrak.setLayout(pnlExtrakLayout);
@@ -251,6 +271,17 @@ public class PizzApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbValaszthatoPizzakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbValaszthatoPizzakActionPerformed
+        szamitasEsKiiras();
+
+    }//GEN-LAST:event_cmbValaszthatoPizzakActionPerformed
+
+    private void rdbMeret25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMeret25ActionPerformed
+        meret = .75; //32cm
+        
+        szamitasEsKiiras();    }                                          
+
+    private void szamitasEsKiiras() {
+        
         //választott pizza indexe
         int pizzaIndex = cmbValaszthatoPizzak.getSelectedIndex();
         
@@ -266,26 +297,25 @@ public class PizzApp extends javax.swing.JFrame {
             pizzaAlapAr = 2100;
         }
         
-    
         int extra1 = 0;
         int extra2 = 0;
         int extra3 = 0;
+        
+        if (chbSajt.isSelected()){
+            extra1 = 100;
+        }
+         if (chbHagyma.isSelected()){
+            extra2 = 100;
+        }
+          if (chbAnanasz.isSelected()){
+            extra3 = 100;
+        }
+        
+        db = (int) numDb.getValue();
+        
+            
         extrak = extra1 + extra2 + extra3;
-      
-        db = 1;
-        
-        vegsoAr = pizzaAlapAr * meret + extrak;;
-        vegsoAr *= db;
-        lblAr.setText(vegsoAr + "");
-    }//GEN-LAST:event_cmbValaszthatoPizzakActionPerformed
-
-    private void rdbMeret25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMeret25ActionPerformed
-        meret = .75; //32cm
-        
-        szamitasEsKiiras();    }                                          
-
-    private void szamitasEsKiiras() {
-        vegsoAr = pizzaAlapAr * meret + extrak;;
+        vegsoAr = pizzaAlapAr * meret + extrak;
         vegsoAr *= db;
         lblAr.setText(vegsoAr + "");
     }//GEN-LAST:event_rdbMeret25ActionPerformed
@@ -295,6 +325,22 @@ public class PizzApp extends javax.swing.JFrame {
         
         szamitasEsKiiras();    
     }//GEN-LAST:event_rdbMeret32ItemStateChanged
+
+    private void chbSajtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chbSajtItemStateChanged
+        szamitasEsKiiras();
+    }//GEN-LAST:event_chbSajtItemStateChanged
+
+    private void chbHagymaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbHagymaActionPerformed
+        szamitasEsKiiras();
+    }//GEN-LAST:event_chbHagymaActionPerformed
+
+    private void chbAnanaszItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chbAnanaszItemStateChanged
+        szamitasEsKiiras();
+    }//GEN-LAST:event_chbAnanaszItemStateChanged
+
+    private void numDbStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_numDbStateChanged
+        szamitasEsKiiras();
+    }//GEN-LAST:event_numDbStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
