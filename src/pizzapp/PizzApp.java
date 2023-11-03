@@ -9,24 +9,24 @@ public class PizzApp extends javax.swing.JFrame {
     int extrak;
     double vegsoAr;
     double meret;
-    
+
     public PizzApp() {
         initComponents();
-        
+
         pizzaAlapAr = 1750; //songoku ára
-        
+
         meret = 1; //32cm
-        
+
         int extra1 = 0;
         int extra2 = 0;
         int extra3 = 0;
         extrak = extra1 + extra2 + extra3;
-        
+
         db = 1;
-        
+
         szamitasEsKiiras();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -282,10 +282,10 @@ public class PizzApp extends javax.swing.JFrame {
 
     private void rdbMeret25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMeret25ActionPerformed
         meret = .75; //32cm
-        
+
         szamitasEsKiiras();
-    }    
-    
+    }
+
     private void szamitasEsKiiras() {
 
         //választott pizza indexe
@@ -302,11 +302,11 @@ public class PizzApp extends javax.swing.JFrame {
         } else if (pizzaIndex == 3) {
             pizzaAlapAr = 2100;
         }
-        
+
         int extra1 = 0;
         int extra2 = 0;
         int extra3 = 0;
-        
+
         if (chbSajt.isSelected()) {
             extra1 = 100;
         }
@@ -316,9 +316,9 @@ public class PizzApp extends javax.swing.JFrame {
         if (chbAnanasz.isSelected()) {
             extra3 = 100;
         }
-        
+
         db = (int) numDb.getValue();
-        
+
         extrak = extra1 + extra2 + extra3;
         vegsoAr = pizzaAlapAr * meret + extrak;
         vegsoAr *= db;
@@ -327,8 +327,8 @@ public class PizzApp extends javax.swing.JFrame {
 
     private void rdbMeret32ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret32ItemStateChanged
         meret = 1; //32cm
-        
-        szamitasEsKiiras();        
+
+        szamitasEsKiiras();
     }//GEN-LAST:event_rdbMeret32ItemStateChanged
 
     private void chbSajtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chbSajtItemStateChanged
@@ -349,9 +349,9 @@ public class PizzApp extends javax.swing.JFrame {
 
     private void btnRendelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRendelActionPerformed
         String valasztottPizza = (String) cmbValaszthatoPizzak.getSelectedItem();
-        
+
         String valasztottMeret = rdbMeret32.isSelected() ? "32 cm" : "25 cm";
-        
+
         String extrakSzoveg = "";
         if (chbSajt.isSelected()) {
             extrakSzoveg += "sajt, ";
@@ -362,17 +362,18 @@ public class PizzApp extends javax.swing.JFrame {
         if (chbAnanasz.isSelected()) {
             extrakSzoveg += "ananász, ";
         }
-        
+
         int rendeltDb = (int) numDb.getValue();
-        
-        String rendelesSzoveg = "Rendelt pizza: " + valasztottPizza + "\n"
+
+        String rendelesSzoveg = "Összesítés: \n"
+                + "Rendelt pizza: " + valasztottPizza + "\n"
                 + "Méret: " + valasztottMeret + "\n"
                 + "Extrák: " + (extrakSzoveg.isEmpty() ? "Nincsenek" : extrakSzoveg.substring(0, extrakSzoveg.length() - 2)) + "\n"
                 + "Mennyiség: " + rendeltDb + " db";
-        
+
         txaOsszesito.setText(rendelesSzoveg);
     }//GEN-LAST:event_btnRendelActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
